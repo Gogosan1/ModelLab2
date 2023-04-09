@@ -116,7 +116,7 @@
             this.queueSize.Name = "queueSize";
             this.queueSize.Size = new System.Drawing.Size(100, 22);
             this.queueSize.TabIndex = 6;
-            this.queueSize.Text = "1";
+            this.queueSize.Text = "0";
             // 
             // label2
             // 
