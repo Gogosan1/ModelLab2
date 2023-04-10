@@ -16,9 +16,10 @@ namespace conveyorSystem
         private int counterOfRefusal;
         private int numberOfHandlers;
         private int queueSize;
-
-        public Model(int modelingTime, int queueSize, int numberOfHandlers)
+        private Random rnd; 
+        public Model(int modelingTime, int queueSize, int numberOfHandlers, Random rnd)
         {
+            this.rnd = rnd;
             if (modelingTime <= 0)
                 throw new Exception("время не может быть отрицательным");
             this.modelingTime = modelingTime * OneMinute;
@@ -38,9 +39,8 @@ namespace conveyorSystem
         {
             // Создание обработчиков заявок
             for (int i = 0; i < numberOfHandlers; i++)
-                Handlers.Add(new HandlerOfRequests(modelingTime, queueSize));
+                Handlers.Add(new HandlerOfRequests(modelingTime, queueSize, rnd));
 
-            Random rnd = new Random();
             int counterOfRequests = 0;
 
             while (true)
@@ -87,9 +87,9 @@ namespace conveyorSystem
                 Handlers[i].FinalCollectionOfStatistics();
             }
 
-            ModelingDone.Invoke();
+           // ModelingDone.Invoke();
         }
-        public event Action ModelingDone;
+       // public event Action ModelingDone;
         public double ServiceProbability { get; private set; }
         public double FalureProbability { get; private set; }
     }

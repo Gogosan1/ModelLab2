@@ -12,8 +12,10 @@ namespace conveyorSystem
         List<double> reqestInQueue = new List<double>();
         private int queueSize;
         private bool end;
-        public HandlerOfRequests(int modelingTime, int queueSize) 
+        private Random rnd;
+        public HandlerOfRequests(int modelingTime, int queueSize, Random rnd) 
         {
+            this.rnd = rnd;
             end = false;
             this.modelingTime = modelingTime;
             if (queueSize < 0)
@@ -65,7 +67,7 @@ namespace conveyorSystem
 
         private void StartProsessing(double ArrivalRequestTime)
         {
-            Random rnd = new Random();
+            
             // время когда освободиться тот или иной обработчик
             double randomValue = rnd.NextDouble();
             double nnn = -(1.0 * 60) * Math.Log(randomValue);
